@@ -1,0 +1,31 @@
+% ------ headers globales -------------
+\documentclass[11pt, a4paper, twoside]{article}
+\usepackage{header}
+\usepackage{config}
+% -------------------------------------
+\begin{document}
+
+% -- Carátula --
+\clearpage{\pagestyle{empty}\input{caratula}\cleardoublepage}
+
+%-- Índice --
+\clearpage{%
+  \pagestyle{empty}\tableofcontents%
+  \vspace{3cm}%
+}
+
+%-- A partir de aquí, pongo el contador de páginas en 1 --
+\setcounter{page}{1}
+
+\include{introduccion}
+
+\clearpage
+\include{vistas}
+
+\clearpage
+\include{discusion}
+
+\clearpage
+\include{conclusiones}
+
+\end{document}
