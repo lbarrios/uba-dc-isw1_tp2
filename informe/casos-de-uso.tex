@@ -1,1 +1,46 @@
 \subsection{Casos de Uso}
+
+\newcommand{\cutitle}[1]{\renewcommand{\givencutitle}{#1}}
+\newcommand{\cuactors}[1]{\renewcommand{\givencuactors}{#1}}
+\newcommand{\cupre}[1]{\renewcommand{\givencupre}{#1}}
+\newcommand{\cupost}[1]{\renewcommand{\givencupost}{#1}}
+\newcommand{\cucourse}[1]{\renewcommand{\givencucourse}{#1}}
+\newcommand{\givencutitle}{REQUIRED!}
+\newcommand{\givencuactors}{REQUIRED!}
+\newcommand{\givencupre}{-}
+\newcommand{\givencupost}{-}
+\newcommand{\givencucourse}{REQUIRED!}
+
+\newenvironment{casodeuso}
+{\begin{flushleft}}
+{\textbf{Caso de Uso: \givencutitle}\\
+Actors: \givencuactors\\
+Pre: \givencupre\\
+Post: \givencupost\\
+\begin{tabular}{ll}
+Curso Normal & Curso Alternativo \\
+\givencucourse
+\end{tabular}
+\end{flushleft}}
+  
+\begin{casodeuso}
+  \cutitle{Registrándose}
+  \cuactors{Cliente}
+  \cupost{El cliente se encuentra registrado}
+  \cucourse{
+  1. El cliente ingresa su usuario y contraseña & \\
+  2. El sistema valida que el usuario no exista. & 2.1 Si el usuario ya existe, mostrar mensaje e ir a 1. \\
+  3. El sistema valida que la contraseña sea segura. & 3.1 Si la contraseña no es segura, informar al cliente e ir a 1 \\
+  4. El cliente ingresa sus datos personales & \\
+  5. Incluye CU: evaluando estado financiero & 5.1 Si el cliente tiene deudas, denegarle el registro. FIN CU. \\
+  6. El cliente ingresa su dirección & \\
+  7. Incluye CU: validando domicilio & 7.1 si el domicilio no es válido, mostrar mensaje e ir a 6.  \\
+  8. Si el cliente desea: Incluye CU: Agregando datos de pago online & \\
+  9. El cliente ingresa su mail & \\
+  10. Incluye CU: enviando mail de bienvenida & \\
+  11. El cliente ingresa al link de bienvenida & 11.1 Si luego de 10 días el usuario no ingresa al link de bienvenida, el registro se cancela, FIN CU.\\
+  12. El sistema marca al usuario como validado & \\
+  13. FIN CU & \\
+  }
+\end{casodeuso}
+
