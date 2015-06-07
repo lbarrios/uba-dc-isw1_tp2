@@ -1,27 +1,37 @@
 \subsection{Casos de Uso}
 
+\captionsetup[table]{name=Caso de uso}
+
+\newcommand{\curef}[1]{\textbf{Caso de uso \ref{cu:#1}}}
 \newcommand{\cutitle}[1]{\renewcommand{\givencutitle}{#1}}
 \newcommand{\cuactors}[1]{\renewcommand{\givencuactors}{#1}}
 \newcommand{\cupre}[1]{\renewcommand{\givencupre}{#1}}
 \newcommand{\cupost}[1]{\renewcommand{\givencupost}{#1}}
 \newcommand{\cucourse}[1]{\renewcommand{\givencucourse}{#1}}
+\newcommand{\culabel}[1]{\renewcommand{\givenculabel}{#1}}
+\newcommand{\cucaption}[1]{\renewcommand{\givencucaption}{#1}}
 \newcommand{\givencutitle}{REQUIRED!}
 \newcommand{\givencuactors}{REQUIRED!}
 \newcommand{\givencupre}{-}
 \newcommand{\givencupost}{-}
 \newcommand{\givencucourse}{REQUIRED!}
+\newcommand{\givenculabel}{REQUIRED!}
+\newcommand{\givencucaption}{} % optional
 
 \newenvironment{casodeuso}
-{\begin{flushleft}}
-{\textbf{Caso de Uso: \givencutitle}\\
-Actors: \givencuactors\\
-Pre: \givencupre\\
-Post: \givencupost\\
-\begin{tabular}{ll}
-Curso Normal & Curso Alternativo \\
+{\begin{table}[H]}{%
+\begin{tabular}{|p{0.5\linewidth} p{0.5\linewidth}|}\hline
+\multicolumn{2}{|l|}{\textbf{Caso de Uso: \givencutitle}} \\
+\multicolumn{2}{|l|}{\textbf{Actors:} \givencuactors} \\
+\multicolumn{2}{|l|}{\textbf{Pre:} \givencupre} \\
+\multicolumn{2}{|l|}{\textbf{Post:} \givencupost} \\ 
+\vspace{1px}\textbf{Curso Normal} & \vspace{1px}\textbf{Curso Alternativo} \\ 
 \givencucourse
+\hline
 \end{tabular}
-\end{flushleft}}
+\caption{\givencutitle}
+\label{cu:\givenculabel}
+\end{table}}
   
 \begin{casodeuso}
   \cutitle{Registrándose}
@@ -42,5 +52,19 @@ Curso Normal & Curso Alternativo \\
   12. El sistema marca al usuario como validado & \\
   13. FIN CU & \\
   }
+  \culabel{Registrandose}
+\end{casodeuso}
+
+\begin{casodeuso}
+  \cutitle{Autenticándose}
+  \cuactors{Cliente}
+  \cupost{El cliente se encuentra autenticado}
+  \cucourse{
+    1. El cliente ingresa el usuario y la contraseña & \\
+    2. El sistema verifica los datos ingresados por el cliente & \\
+    3. El cliente es redirigido al portal de bienvenida & 3.1 Si los datos son inválidos, se muestra un mensaje de error \\
+    4. FIN CU & 4.1 FIN CU\\
+  }
+  \culabel{Autenticandose}
 \end{casodeuso}
 
