@@ -1,7 +1,7 @@
 \subsection{Casos de Uso}
 
 \captionsetup[table]{name=Caso de uso}
-  
+
 \begin{casodeuso}
   \cutitle{Registrándose}
   \cuactors{Cliente}
@@ -14,7 +14,7 @@
   5. Incluye CU: evaluando estado financiero & 5.1 Si el cliente tiene deudas, denegarle el registro. FIN CU. \\
   6. El cliente ingresa su dirección & \\
   7. Incluye CU: validando domicilio & 7.1 si el domicilio no es válido, mostrar mensaje e ir a 6.  \\
-  8. Si el cliente desea: Incluye CU: Agregando datos de pago online & \\
+  8. Si el cliente desea: es extendido por CU: Agregando datos de pago online & \\
   9. El cliente ingresa su mail & \\
   10. Incluye CU: enviando mail de bienvenida & \\
   11. El cliente ingresa al link de bienvenida & 11.1 Si luego de 10 días el usuario no ingresa al link de bienvenida, el registro se cancela, FIN CU.\\
@@ -119,7 +119,7 @@
 \cuactors{Cliente, agente de cobro}
 \cupre{El cliente eligió el método de pago online}
 \cucourse{
-1. Si el cliente lo desea, incluye: agregando datos de pago online & \\
+1. Si el cliente lo desea, es extendido por CU: agregando datos de pago online & \\
 2. El sistema muestra datos de pago asociados al cliente & \\
 3. El cliente indica método y datos de pago & 3.1 Si el cliente no posee datos de pago, ir a paso 1 \\
 4. El sistema abre una ventana del agente de cobro con los datos de la transacción. & \\
@@ -187,7 +187,7 @@
 
 
 \begin{casodeuso}
-\cutitle{Validando datos de domicilio}
+\cutitle{Validando domicilio}
 \cuactors{Correo argentino}
 \cupre{El cliente ingresó los datos de su domicilio}
 \cupost{Los datos de su domicilio fueron validados}
@@ -398,4 +398,3 @@
 3. FIN CU & \\
 }
 \end{casodeuso}
-
