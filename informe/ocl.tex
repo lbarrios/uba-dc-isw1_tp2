@@ -1,0 +1,44 @@
+%% \begin{enumerate}
+
+%% 	\item La redituabilidad de una unidad es su precio de venta menos su precio de lista
+%% \begin{lstlisting}
+%% Context: Unidad
+%% Inv: self.redituabilidad = self.precioDeVenta - self.precioDeLista
+%% \end{lstlisting}
+
+%% 	\item La redituabilidad de un pedido es la ganancia menos el costo
+%% \begin{lstlisting}
+%% Context: Pedido
+%% Inv: self.ganancia = if self.estadoPedido == Concretado
+%% then self.unidades->collect(precioDeVenta-precioDeLista)->sum()
+%% else 0 endif
+%% Inv: self.costo = if self.envio then self.envio.costo else 0 endif + if self.envio.oclIsTypeOf(EnvioFallido)
+%% then self.envio.costoMercaderiaRechazada else 0 endif
+%% \end{lstlisting}
+
+%% \item Se le permite la contraentrega si la redituabilidad del cliente es mayor al umbral de redituabilidad
+%% \begin{lstlisting}
+%% Context: Cliente Particular
+%% redituabilidadCliente = self.pedidos->collect(redituabilidad)->sum()
+%% Inv: iff(permitidoContraentrega, redituabilidadCliente > umbralRedituabilidad
+%% \end{lstlisting}
+
+%% \item Un cliente no puede tener dos pedidos vigentes.
+%% \begin{lstlisting}
+%% Context: Cliente Particular
+%% 	Inv: self.pedidos->filter(x | x.estado != entregado and x.estado != anulado and x.estado != cancelado).size() < 2
+%% \end{lstlisting}
+
+%% \item Un Producto está bajo en stock en un Depósito sii la cantidad de unidades de dicho producto en el Depósito está por debajo del umbral mínimo de dicho producto
+%% \begin{lstlisting}
+%% Context: Producto
+%% Inv: self.estaEnBajaEn->forall(d | d.tengo->filter(u | u.soy = self).size() < self.umbralMínimo)
+%% \end{lstlisting}
+
+%% \item Descripción
+%% \begin{lstlisting}
+%% Context: contexto
+%% Inv: blabla
+%% \end{lstlisting}
+
+%% \end{enumerate}
