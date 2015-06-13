@@ -28,6 +28,15 @@
   \end{itemocl}
 
   \begin{itemocl}
+    \ocldescription{Se le permite la contraentrega si la redituabilidad del cliente es mayor al umbral de redituabilidad.}
+    \oclcontext{Cliente Particular}
+    \oclbody{
+      redituabilidadCliente = self.pedidos->collect(redituabilidad)->sum()
+      Inv: iff(permitidoContraentrega, redituabilidadCliente > umbralRedituabilidad
+    }
+  \end{itemocl}
+
+  \begin{itemocl}
    \ocldescription{Un cliente no puede tener dos pedidos vigentes.}
    \oclcontext{Cliente Particular}
    \oclbody{self.pedidos->filter(x | x.estado != entregado and x.estado != anulado and x.estado != cancelado).size() < 2}
