@@ -29,7 +29,7 @@ Context: Cliente Particular
 
 redituabilidadCliente = self.pedidos->collect(redituabilidad)->sum()
 Inv: iff(permitidoContraentrega, redituabilidadCliente > umbralRedituabilidad
-  
+
   \end{itemocl}
 
   \begin{itemocl}{Un cliente no puede tener dos pedidos vigentes.}
@@ -39,7 +39,51 @@ Inv: self.pedidos->filter(x | x.estado != entregado and x.estado != anulado and 
 
   \begin{itemocl}{Un Producto está bajo en stock en un Depósito sii la cantidad de unidades de dicho producto en el Depósito está por debajo del umbral mínimo de dicho producto.}
 Context: Producto
-Inv: self.estaEnBajaEn->forall(d | d.tengo->filter(u | u.soy = self).size() < self.umbralMínimo)
+Inv: self.estaEnBajaEn->forall(d | d.tengo->filter(u | u.soy = self).size() < self.umbralMinimo)
   \end{itemocl}
 
+  \begin{itemocl}{$fechaCreacion < fechaDespacho < fechaEntrega$}
+Context: Envio
+Inv: self.sobrePedido.fechaCreacion < self.fechaDespacho < self.sobrePedido.fechaEntrega
+  \end{itemocl}
+
+  \begin{itemocl}{
+      Una unidad está en solo uno de los siguientes lugares:
+          pedidoAProovedor
+          depósito
+          depósito y en pedido en estado enCarrito, anulado, cancelado
+          en pedido confirmado
+    }
+Context: Unidad
+Inv:
+(self.enPedidoAProovedor->size() == 1 and self.enDeposito->size() == 0 and self.enPedido->size() == 0)
+or
+(self.enDeposito->size() == 1 and self.enPedidoAProovedor->size() == 0 and self.enPedido->size() == 0)
+or
+(self.enDeposito->size() == 1 and self.enPedidoAProovedor->size() == 0 and self.enPedido->size() > 0 and self.enPedido.estado in {enCarrito, cancelado, anulado})
+or
+(self.enDeposito->size() == 0 and self.enPedidoAProovedor->size() == 0 and self.enPedido->filter(p | p.estado notIn {enCarrito, cancelado, anulado}).size() == 1)
+  \end{itemocl}
+
+  \begin{itemocl}{
+      Un cliente C tiene un producto recomendado P si y solo si:
+          C nunca compro P y
+          P pertenece a la lista de 10 más comprados de algun cliente parecido a C
+    }
+Context: Cliente Particular
+edadParecida(c1, c2) = |c1.edad - c2.edad| < 4
+productosComprados(c) = self.hicePedido.incluyo.soy
+frecuenciaProducto(c, p) = productosComprados(c).filter(p1 | p1 == p).size()
+frecuenciasProductosOrdenadas(c) = productosComprados(c).asSet().sortedBy(p | frecuenciaProducto(c, p)).reverse()
+diezMasComprados(c) = frecuenciasProductosOrdenadas(c).subSequence(1, 10)
+clienteParecido(c1, c2) = edadParecida(c1, c2) and intersection(diezMasComprados(c1), diezMasComprados(c2)).size() >= 5
+Inv: self.meRecomiendan->forAll(p | p notIn productosComprados(self) and ClienteParticular.allInstances()->exists(c | clienteParecido(self, c) and p in diezMasComprados(c)))
+  \end{itemocl}
+
+  \begin{itemocl}{Comprobantes deben tener asociados datos de pago registrados por el cliente.}
+Context: Comprobante de tarjeta de cr\'edito
+Inv: self.tarjeta.asociadoA == self.pagoDePedido.hechoPor
+Context: Comprobante PayPal
+Inv: self.cuenta.asociadoA == self.pagoDePedido.hechoPor
+  \end{itemocl}
 \end{listocl}
