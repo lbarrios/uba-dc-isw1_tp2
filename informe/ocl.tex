@@ -1,51 +1,45 @@
 \subsection{OCL}
 
 \begin{listocl}
-  \begin{itemocl}
-   \ocldescription{La redituabilidad de una unidad es su precio de venta menos su precio de lista.}
-   \oclcontext{Unidad}
-   \oclbody{self.redituabilidad = self.precioDeVenta - self.precioDeLista}
+  \begin{itemocl}{La redituabilidad de una unidad es su precio de venta menos su precio de lista.}
+Context: Unidad
+Inv: self.redituabilidad = self.precioDeVenta - self.precioDeLista
   \end{itemocl}
 
-  \begin{itemocl}
-    \ocldescription{La redituabilidad de un pedido es la ganancia menos el costo.}
-    \oclcontext{Pedido}
-    \oclbody{
-      ganancia = if self.estadoPedido == Concretado
-                      then self.unidades->collect(precioDeVenta-precioDeLista)->sum()
-                      else 0
-                      endif
-      costo = if self.envio
-              then self.envio.costo
-              else 0
-              endif
-              + if self.envio.oclIsTypeOf(EnvioFallido)
-              then self.envio.costoMercaderiaRechazada
-              else 0
-              endif
-      Inv: self.redituabilidad = ganancia - costo
-    }
+  \begin{itemocl}{La redituabilidad de un pedido es la ganancia menos el costo.}
+Context: Pedido
+
+ganancia = if self.estadoPedido == Concretado
+	   then self.unidades->collect(precioDeVenta-precioDeLista)->sum()
+	   else 0
+	   endif
+costo = if self.envio
+	then self.envio.costo
+	else 0
+	endif
+	+ if self.envio.oclIsTypeOf(EnvioFallido)
+	then self.envio.costoMercaderiaRechazada
+	else 0
+	endif
+Inv: self.redituabilidad = ganancia - costo
   \end{itemocl}
 
-  \begin{itemocl}
-    \ocldescription{Se le permite la contraentrega si la redituabilidad del cliente es mayor al umbral de redituabilidad.}
-    \oclcontext{Cliente Particular}
-    \oclbody{
-      redituabilidadCliente = self.pedidos->collect(redituabilidad)->sum()
-      Inv: iff(permitidoContraentrega, redituabilidadCliente > umbralRedituabilidad
-    }
+  \begin{itemocl}{Se le permite la contraentrega si la redituabilidad del cliente es mayor al umbral de redituabilidad.}
+Context: Cliente Particular
+
+redituabilidadCliente = self.pedidos->collect(redituabilidad)->sum()
+Inv: iff(permitidoContraentrega, redituabilidadCliente > umbralRedituabilidad
+  
   \end{itemocl}
 
-  \begin{itemocl}
-   \ocldescription{Un cliente no puede tener dos pedidos vigentes.}
-   \oclcontext{Cliente Particular}
-   \oclbody{self.pedidos->filter(x | x.estado != entregado and x.estado != anulado and x.estado != cancelado).size() < 2}
+  \begin{itemocl}{Un cliente no puede tener dos pedidos vigentes.}
+Context: Cliente Particular
+Inv: self.pedidos->filter(x | x.estado != entregado and x.estado != anulado and x.estado != cancelado).size() < 2
   \end{itemocl}
 
-  \begin{itemocl}
-   \ocldescription{Un Producto está bajo en stock en un Depósito sii la cantidad de unidades de dicho producto en el Depósito está por debajo del umbral mínimo de dicho producto.}
-   \oclcontext{Producto}
-   \oclbody{self.estaEnBajaEn->forall(d | d.tengo->filter(u | u.soy = self).size() < self.umbralMínimo)}
+  \begin{itemocl}{Un Producto está bajo en stock en un Depósito sii la cantidad de unidades de dicho producto en el Depósito está por debajo del umbral mínimo de dicho producto.}
+Context: Producto
+Inv: self.estaEnBajaEn->forall(d | d.tengo->filter(u | u.soy = self).size() < self.umbralMínimo)
   \end{itemocl}
 
 \end{listocl}

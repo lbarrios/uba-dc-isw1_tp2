@@ -135,10 +135,16 @@
 
 \newenvironment{listocl}{\begin{enumerate}}{\end{enumerate}}
 
-\newenvironment{itemocl}
-{\item }{
-\givenocldescription \\
-\texttt{
-Context: \givenoclcontext \\
-Inv: \givenoclbody
-}}
+\lstnewenvironment{itemocl}[1]{
+  \renewcommand\lstlistingname{lstListing}
+  \lstset{language=[Visual]Basic, %
+  keywordstyle=\bfseries,commentstyle=\color{ForestGreen},stringstyle=\color{Maroon},%
+  basicstyle=\ttfamily\normalsize, % frame=lines,
+  showspaces=false, showstringspaces=false,%
+  aboveskip=10pt, belowskip=10pt, %tabsize=4, 
+  lineskip=2pt, %numbers=left, numberstyle=\tiny, stepnumber=1, numbersep=5pt,%
+  numberblanklines=false, %
+  breaklines, breakatwhitespace, prebreak=\_, breakindent=0pt, %
+  morekeywords={Context, Inv, endif}
+  }
+  \item #1}{}
