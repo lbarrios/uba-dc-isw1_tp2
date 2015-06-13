@@ -31,6 +31,25 @@
 \end{casodeuso}
 
 \begin{casodeuso}
+  \cutitle{Evaluando estado financiero}
+  \cuactors{Financiera}
+  \cucourse{
+    1. El sistema envía request a la API de estado financiero con el DNI del cliente & \\
+    2. El sistema parsea la respuesta de la API & \\
+  }
+\end{casodeuso}
+
+\begin{casodeuso}
+  \cutitle{Enviando mail de bienvenida}
+  \cuactors{Correo electrónico}
+  \cucourse{
+    1. El sistema define el asunto, cuerpo y destinatario(nuevo cliente) del nuevo mensaje. & \\
+    2. El sistema pide al servido de correo electrónico enviar el mensaje. & \\
+    3. El servidor de correo electrónico envía el mensaje. & \\
+  }
+\end{casodeuso}
+
+\begin{casodeuso}
   \cutitle{Autenticándose}
   \cuactors{Cliente}
   \cupost{El cliente se encuentra autenticado}
@@ -164,6 +183,21 @@
 }
 \end{casodeuso}
 
+%% \begin{casodeuso}
+%% \cutitle{Modificando pedido}
+%% \cuactors{Cliente}
+%% \cupre{El cliente tiene un pedido sin confirmar, o confirmado, pero sin armar en depósito.}
+%% \cupost{El pedido es modificado.}
+%% \cucourse{
+%% 1. El cliente quita los productos que desee y agrega los productos que desee, siempre y cuando estén en stock.
+%% 2. Si el pedido está sin confirmar, se registra la modificación, FIN CU. & \\
+%% 3. Se cancela el pedido anterior: incluye CU Cancelando Pedido.
+%% 4. Se genera un nuevo pedido
+%% 3. La reserva de productos se anula, y los mismos se reingresan a stock & \\
+%% 3. Si fue pagado, es extendido por CU: Reintegrando dinero & \\
+%% 4. FIN CU & \\
+%% }
+%% \end{casodeuso}
 
 \begin{casodeuso}
 \cutitle{Validando datos de pago}
