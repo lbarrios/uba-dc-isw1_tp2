@@ -2,7 +2,7 @@
 
 \begin{figure}[H]
   \begin{center}
-  \includegraphics[width=500px]{images/casos_de_uso.pdf}
+  \includegraphics[width=500px]{images/casos-de-uso.pdf}
   \end{center}
 \end{figure}
 
@@ -88,7 +88,7 @@
 2. El sistema muestra un dropdown con la cantidad de unidades que están disponibles en ese momento & \\
 3. El cliente elige la cantidad & \\
 4. El sistema agrega el producto al carrito y calcula el monto total  & \\
-5. Si el cliente lo desea, es extendido por CU: confirmando compra
+5. Si el cliente lo desea, es extendido por CU: confirmando compra & \\
 6. FIN CU & \\
 }
 \end{casodeuso}
@@ -101,7 +101,7 @@
 \cupost{El cliente tiene un carrito reservado y confirmado}
 \cucourse{
 1. El sistema ratifica la disponibilidad de stock para cada producto, y los reserva para el cliente; el carrito se encuentra reservado &  1.1 Si algún producto ya no tiene disponibilidad, se resta del carrito y se le informa al usuario; vuelve al paso 1. \\
-2. Incluye: Calcular costo de envío & \\ (El sistema obtiene el costo de envío de la API de logística)
+2. Incluye: Calcular costo de envío & \\
 3. El sistema informa del costo total de la compra, incluyendo el envío. & \\
 4. Incluye: Acordando fecha de entrega & \\
 5. Incluye: Eligiendo método de pago & \\
@@ -189,11 +189,11 @@
 \cupre{El cliente tiene un pedido sin confirmar, o confirmado, pero sin armar en depósito.}
 \cupost{El pedido es modificado.}
 \cucourse{
-1. El cliente quita los productos que desee y agrega los productos que desee, siempre y cuando estén en stock.
+1. El cliente quita o agrega los productos que desee, siempre y cuando estén en stock. & \\
 2. Si el pedido está sin confirmar, se registra la modificación, FIN CU. & \\
-3. Se cancela el pedido anterior: incluye CU Cancelando Pedido.
-4. Se genera un nuevo pedido con los datos modificados.
-5. Incluye CU: Confirmando compra.
+3. Se cancela el pedido anterior: es extendido por CU Cancelando Pedido. & \\
+4. Se genera un nuevo pedido con los datos modificados. & \\
+5. Es extendido por CU: Confirmando compra. & \\
 6. FIN CU & \\
 }
 \end{casodeuso}
