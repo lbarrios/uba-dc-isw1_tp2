@@ -183,21 +183,20 @@
 }
 \end{casodeuso}
 
-%% \begin{casodeuso}
-%% \cutitle{Modificando pedido}
-%% \cuactors{Cliente}
-%% \cupre{El cliente tiene un pedido sin confirmar, o confirmado, pero sin armar en depósito.}
-%% \cupost{El pedido es modificado.}
-%% \cucourse{
-%% 1. El cliente quita los productos que desee y agrega los productos que desee, siempre y cuando estén en stock.
-%% 2. Si el pedido está sin confirmar, se registra la modificación, FIN CU. & \\
-%% 3. Se cancela el pedido anterior: incluye CU Cancelando Pedido.
-%% 4. Se genera un nuevo pedido
-%% 3. La reserva de productos se anula, y los mismos se reingresan a stock & \\
-%% 3. Si fue pagado, es extendido por CU: Reintegrando dinero & \\
-%% 4. FIN CU & \\
-%% }
-%% \end{casodeuso}
+\begin{casodeuso}
+\cutitle{Modificando pedido}
+\cuactors{Cliente}
+\cupre{El cliente tiene un pedido sin confirmar, o confirmado, pero sin armar en depósito.}
+\cupost{El pedido es modificado.}
+\cucourse{
+1. El cliente quita los productos que desee y agrega los productos que desee, siempre y cuando estén en stock.
+2. Si el pedido está sin confirmar, se registra la modificación, FIN CU. & \\
+3. Se cancela el pedido anterior: incluye CU Cancelando Pedido.
+4. Se genera un nuevo pedido con los datos modificados.
+5. Incluye CU: Confirmando compra.
+6. FIN CU & \\
+}
+\end{casodeuso}
 
 \begin{casodeuso}
 \cutitle{Validando datos de pago}
