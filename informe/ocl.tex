@@ -10,7 +10,7 @@ Inv: self.redituabilidad = self.precioDeVenta - self.precioDeLista
 Context: Pedido
 
 ganancia = if self.estadoPedido == Concretado
-	   then self.unidades->collect(precioDeVenta-precioDeLista)->sum()
+	   then self.unidades->collect(redituabilidad)->sum()
 	   else 0
 	   endif
 costo = if self.envio
@@ -24,12 +24,11 @@ costo = if self.envio
 Inv: self.redituabilidad = ganancia - costo
   \end{itemocl}
 
-  \begin{itemocl}{Se le permite la contraentrega si la redituabilidad del cliente es mayor al umbral de redituabilidad.}
+  \begin{itemocl}{Se le permite la contraentrega si y solo si la redituabilidad del cliente es mayor al umbral de redituabilidad.}
 Context: Cliente Particular
 
 redituabilidadCliente = self.pedidos->collect(redituabilidad)->sum()
-Inv: iff(permitidoContraentrega, redituabilidadCliente > umbralRedituabilidad
-
+Inv: permitidoContraentrega = redituabilidadCliente > umbralRedituabilidad
   \end{itemocl}
 
   \begin{itemocl}{Un cliente no puede tener dos pedidos vigentes.}
@@ -42,7 +41,7 @@ Context: Producto
 Inv: self.estaEnBajaEn->forall(d | d.tengo->filter(u | u.soy = self).size() < self.umbralMinimo)
   \end{itemocl}
 
-  \begin{itemocl}{$fechaCreacion < fechaDespacho < fechaEntrega$}
+  \begin{itemocl}{Para cada pedido, $fechaCreacion < fechaDespacho < fechaEntrega$}
 Context: Envio
 Inv: self.sobrePedido.fechaCreacion < self.fechaDespacho < self.sobrePedido.fechaEntrega
   \end{itemocl}
@@ -81,7 +80,7 @@ Inv: self.meRecomiendan->forAll(p | p notIn productosComprados(self) and Cliente
   \end{itemocl}
 
   \begin{itemocl}{Comprobantes deben tener asociados datos de pago registrados por el cliente.}
-Context: Comprobante de tarjeta de cr\'edito
+Context: Comprobante de tarjeta de credito
 Inv: self.tarjeta.asociadoA == self.pagoDePedido.hechoPor
 Context: Comprobante PayPal
 Inv: self.cuenta.asociadoA == self.pagoDePedido.hechoPor
