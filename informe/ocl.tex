@@ -9,26 +9,26 @@ Inv: self.redituabilidad = self.precioDeVenta - self.precioDeLista
   \begin{itemocl}{La redituabilidad de un pedido es la ganancia menos el costo.}
 Context: Pedido
 
-ganancia = if self.estadoPedido == Concretado
-	   then self.unidades->collect(redituabilidad)->sum()
+ganancia(p) = if p.estadoPedido == Concretado
+	   then p.unidades->collect(redituabilidad)->sum()
 	   else 0
 	   endif
-costo = if self.envio
-	then self.envio.costo
+costo(p) = if p.envio->size() == 1
+	then p.envio.costo
 	else 0
 	endif
-	+ if self.envio.oclIsTypeOf(EnvioFallido)
-	then self.envio.costoMercaderiaRechazada
+	+ if p.envio->size() == 1 and p.envio.oclIsTypeOf(EnvioFallido)
+	then p.envio.costoMercaderiaMalograda
 	else 0
 	endif
-Inv: self.redituabilidad = ganancia - costo
+Inv: self.redituabilidad = ganancia(self) - costo(self)
   \end{itemocl}
 
   \begin{itemocl}{Se le permite la contraentrega si y solo si la redituabilidad del cliente es mayor al umbral de redituabilidad.}
 Context: Cliente Particular
 
-redituabilidadCliente = self.pedidos->collect(redituabilidad)->sum()
-Inv: permitidoContraentrega = redituabilidadCliente > umbralRedituabilidad
+redituabilidadCliente(c) = c.pedidos->collect(redituabilidad)->sum()
+Inv: self.permitidoContraentrega = redituabilidadCliente(self) > GLOBAL_VARIABLE(umbralRedituabilidad)
   \end{itemocl}
 
   \begin{itemocl}{Un cliente no puede tener dos pedidos vigentes.}
