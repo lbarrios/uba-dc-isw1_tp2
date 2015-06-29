@@ -1,4 +1,4 @@
-Casos de Uso}
+\section{Casos de Uso}
 
 \begin{figure}[H]
   \begin{center}
@@ -12,7 +12,7 @@ Casos de Uso}
 % - CASO DE USO: 1) REGISTRANDOSE
 %
 \begin{casodeuso}
-  \cutitle{1) Registrándose}
+  \cutitle{Registrándose}
   \cuactors{Cliente}
   \cupre{-}
   \cupost{Se ha enviado un mail de bienvenida, el usuario se encuentra pendiente de confirmar.}
@@ -21,39 +21,57 @@ Casos de Uso}
     2. El sistema valida que el usuario no exista. & 2.1 Si el usuario ya existe, mostrar mensaje e ir a 1. \\
     3. El sistema valida que la contraseña sea segura. & 3.1 Si la contraseña no es segura, informar al cliente e ir a 1 \\
     4. El cliente ingresa sus datos personales & \\
-    5. Incluye CU: evaluando estado financiero & 5.1 Si el cliente tiene deudas, denegarle el registro. FIN CU. \\
+    5. Incluye CU \ref{cu:evaluado-estado-financiero}: evaluando estado financiero & 5.1 Si el cliente tiene deudas, denegarle el registro. FIN CU. \\
     6. El cliente ingresa su dirección & \\
-    7. Incluye CU: validando domicilio & 7.1 si el domicilio no es válido, mostrar mensaje de error e ir a 6. \\
+    7. Incluye CU \ref{cu:validando-domicilio}: validando domicilio & 7.1 si el domicilio no es válido, mostrar mensaje de error e ir a 6. \\
     8. Si el cliente desea: es extendido por CU: Agregando datos de pago online & \\
     9. El cliente ingresa su mail & \\
     10. El sistema define el link y el contenido del mail de bienvenida & \\
-    11. Incluye CU: enviando mail & \\
+    11. Incluye caso de uso \ref{cu:enviando-mail}: enviando mail & \\
     12. FIN CU & \\
   }
   \culabel{registrandose}
 \end{casodeuso}
 
+Este caso de uso responde al objetivo \textbf{lograr [cliente registrado] (1.1.1.1.1.1)}. 
+
+Los pasos 1, 4, 6 y 9 se corresponden con el objetivo \textbf{lograr [ingresar datos de identificación y de domicilio] (1.1.1.1.1.1.2.1.1)}, y con el fenómeno \textbf{3a: el cliente presenta datos de identificación y de domicilio}.
+
+Los pasos 2 y 3 se corresponden con el objetivo \textbf{lograr [validar usuario y contraseña] (1.1.1.1.1.1.2.2.4)}.
+
+El paso 5 responde al objetivo \textbf{lograr [evaluar estado financiero] (1.1.1.1.1.1.2.2.2)}, y se corresponde con el fenómeno \textbf{3d: sistema evalúa estado financiero a través de financiera}.
+
+El paso 7 responde al objetivo \textbf{lograr [validar domicilio] (1.1.1.1.1.1.2.2.1)}, y al fenómeno \textbf{3c: el sistema valida domicilio con el correo argentino}
+
+El paso 8 responde al objetivo \textbf{lograr [presentar datos de pago, si quiere hacer pagos online] (1.1.1.1.1.1.2.1.2)} y al evento \textbf{3b: cliente presenta datos de pago al sistema}.
+
+Los pasos 10 y 11 responden al objetivo \textbf{lograr [validar mail] (1.1.1.1.1.1.2.2.5)} y al evento \textbf{3e: el sistema le indica al correo electrónico que envíe mail de confirmación al cliente.}
+
 %
 % - CASO DE USO: 2) CONFIRMANDO DIRECCION DE MAIL
 %
 \begin{casodeuso}
-  \cutitle{2) Confirmando dirección de mail}
+  \cutitle{Confirmando dirección de mail}
   \cuactors{Cliente}
-  \cupre{Se ha enviado un mail de bienvenida}
+  \cupre{Se ha enviado un mail de confirmación}
   \cupost{El usuario se confirma}
   \cucourse{
-    1. El cliente ingresa al link de bienvenida & \\
+    1. El cliente ingresa al link de confirmación & \\
     2. El sistema marca al usuario como validado & 2.1 Si el link no es válido, se le informa al usuario. \\
     3. FIN CU & FIN CU\\
   }
   \culabel{confirmando-direccion-de-mail}
 \end{casodeuso}
 
+Este caso de uso se corresponde con el objetivo \textbf{lograr [validar mail] (1.1.1.1.1.1.2.2.5)}, y con el evento al evento \textbf{3e: el sistema le indica al correo electrónico que envíe mail de confirmación al cliente}.
+
+El paso 2 se corresponde con el objetivo \textbf{lograr [añadir cliente] (1.1.1.1.1.1.2.3)} y con el evento \textbf{3f: el sistema añade al cliente}.
+
 %
 % - CASO DE USO: 3) EVALUANDO ESTADO FINANCIERO
 %
 \begin{casodeuso}
-  \cutitle{3) Evaluando estado financiero}
+  \cutitle{Evaluando estado financiero}
   \cuactors{Financiera}
   \cupre{}
   \cupost{}
@@ -64,11 +82,13 @@ Casos de Uso}
   \culabel{evaluado-estado-financiero}
 \end{casodeuso}
 
+Este caso de uso responde al objetivo \textbf{lograr [evaluar estado financiero] (1.1.1.1.1.1.2.2.2)}, y con el fenómeno \textbf{3e: sistema evalúa estado financiero a través de financiera}.
+
 %
 % - CASO DE USO: 4) ENVIANDO MAIL
 %
 \begin{casodeuso}
-  \cutitle{4) Enviando mail}
+  \cutitle{Enviando mail}
   \cuactors{Correo electrónico}
   \cupre{El sistema definió un mensaje para un cliente}
   \cupost{Se ha delegado el envío de un correo electrónico}
@@ -80,11 +100,13 @@ Casos de Uso}
   \culabel{enviando-mail}
 \end{casodeuso}
 
+Este caso de uso se corresponde con el fenómeno \textbf{8e: el sistema de correo electrónico envía mail al cliente}. 
+
 %
 % - CASO DE USO: 5) AUTENTICANDOSE
 %
 \begin{casodeuso}
-  \cutitle{5) Autenticándose}
+  \cutitle{Autenticándose}
   \cuactors{Cliente}
   \cupre{}
   \cupost{El cliente se encuentra autenticado}
@@ -97,11 +119,13 @@ Casos de Uso}
   \culabel{autenticandose}
 \end{casodeuso}
 
+Este caso de uso se corresponde con el evento \textbf{4a) el cliente ingresa credenciales en el sistema}, y con el objetivo \textbf{lograr [cliente se autentica de forma segura] (1.1.1.1.1.2)}, y con sus subobjetivos.
+
 %
 % - CASO DE USO: 6) LISTANDO PRODUCTOS DISPONIBLES
 %
 \begin{casodeuso}
-  \cutitle{6) Listando productos disponibles}
+  \cutitle{Listando productos disponibles}
   \cuactors{Cliente}
   \cupre{El cliente está autenticado}
   \cupost{Se le envió al cliente un listado personalizado de productos}
@@ -115,11 +139,15 @@ Casos de Uso}
   \culabel{listando-productos-disponibles}
 \end{casodeuso}
 
+Los pasos 1, 2 y 4 se corresponden con el objetivo \textbf{lograr [mostrar stock disponible] (1.1.1.1.2.1)} y con el fenómeno \textbf{4b: el sistema muestra stock disponible al cliente}.
+
+Los pasos 3 y 4 se corresponden con el objetivo \textbf{lograr [mostrar recomendaciones] (1.1.1.1.2.2)} y con el fenómeno \textbf{4c: el sistema muestra recomendaciones al cliente.}
+
 %
 % - CASO DE USO: 7) AGREGANDO PRODUCTO AL CARRITO
 %
 \begin{casodeuso}
-  \cutitle{7) Agregando producto al carrito}
+  \cutitle{Agregando producto al carrito}
   \cuactors{Cliente}
   \cupre{El cliente tiene el listado de productos}
   \cupost{El producto es agregado al carrito}
@@ -133,32 +161,55 @@ Casos de Uso}
   \culabel{agregado-producto-al-carrito}
 \end{casodeuso}
 
+Este caso de uso se corresponde con el objetivo \textbf{lograr [seleccionar mercadería] (1.1.1.1.2.3)} y con el fenómeno \textbf{4d: el cliente selecciona mercadería en el sistema}. El paso 2 se corresponde con el objetivo \textbf{lograr [mostrar stock disponible] (1.1.1.1.2.1)}.
+
 %
 % - CASO DE USO: 8) CONFIRMANDO COMPRA
 %
 \begin{casodeuso}
-  \cutitle{8) Confirmando compra}
+  \cutitle{Confirmando compra}
   \cuactors{Cliente}
   \cupre{El cliente tiene un carrito armado}
-  \cupost{El cliente tiene un carrito reservado y confirmado}
+  \cupost{El cliente tiene una compra reservada y confirmada}
   \cucourse{
     1. El sistema ratifica la disponibilidad de stock para cada producto, y los reserva para el cliente; el carrito se encuentra reservado &  1.1 Si algún producto ya no tiene disponibilidad, se resta del carrito y se le informa al usuario; vuelve al paso 1. \\
-    2. Incluye: Calculando costo de envío & \\
+    2. Incluye CU \ref{cu:calculando-costo-de-envio}: Calculando costo de envío & \\
     3. El sistema informa del costo total de la compra, incluyendo el envío. & \\
-    4. Incluye: Acordando fecha de entrega & \\
+    4. Incluye CU \ref{cu:acordando-fecha-de-entrega}: Acordando fecha de entrega & \\
     5. El sistema determina si el cliente tiene autorizado el pago contraentrega, y presenta los métodos de pagos disponibles & \\
     6. El cliente aprueba el costo y las fechas informadas, e indica el método de pago deseado & \\
-    7. Si el pago es online: Es extendido por: Pagando online. & 7.1 Si el pago es online: si el pago no puede ser efectuado, vuelve a paso 7. \\
-    8. El pedido es confirmado, FIN CU & 8.1 Si el pedido no pudo ser confirmado luego de 10 minutos, los productos son reingresados a stock, y el carrito deja de estar reservado, vuelve a paso 1 \\
+    7. Si el pago es online: Es extendido por CU \ref{cu:pagando-online}: Pagando online. & 7.1 Si el pago es online: si el pago no puede ser efectuado, vuelve a paso 7. \\
+    8. El pedido es confirmado & 8.1 Si el pedido no pudo ser confirmado luego de 10 minutos, los productos son reingresados a stock, y el carrito deja de estar reservado, vuelve a paso 1 \\
+    9. FI CU & \\
   }
   \culabel{confirmando-compra}
 \end{casodeuso}
+
+Este caso de uso responde al objetivo \textbf{lograr [confirmar carrito] (1.1.1.1.2.4)}, y al fenómeno \textbf{5a: el cliente confirma el carrito al sistema}.
+
+Los pasos 1 y 1.1, se corresponden con el objetivo \textbf{lograr [si al confirmar carrito se acabó el stock de algún producto, se muestra mensaje de error y se quita producto del carrito, y se vuelve al estado previo a la confirmación] (1.1.1.1.2.5)} y con los fenómenos \textbf{5b: sistema ratifica al cliente stock disponible} y \textbf{5c: sistema muestra mensaje de error de producto no disponible al cliente}.
+
+El paso 2 se corresponde con el fenómeno \textbf{5d: sistema obtiene el costo del envío de la API de Logística} y con el objetivo \textbf{lograr [calcular costo de envío] (1.1.1.1.4.4)}.
+
+El paso 3 se corresponde con el fenómeno \textbf{5e: sistema informa el costo de la compra y el envío al cliente}, y con el objetivo \textbf{lograr [informar costo total] (1.1.1.1.4.5}.
+
+El paso 4 se corresponde con los fenómenos \textbf{5f, 5g y 5h}, y con el objetivo \textbf{lograr [acordar fecha de entrega] (1.1.1.1.3)} y sus subobjetivos.
+
+El paso 5 se corresponde con el evento \textbf{5i: sistema presenta los métodos de pago disponibles al cliente} y con los objetivos \textbf{lograr [evaluar si permitir contraentrega] (1.1.1.1.4.1)} y \textbf{lograr [informar métodos de pago disponibles] (1.1.1.1.4.2)}.
+
+El paso 6 se corresponde con el evento \textbf{5j: el cliente elige el método de pago} y con el objetivo \textbf{lograr [elegir forma de pago] (1.1.1.1.4.3)}.
+
+Los fenómenos \textbf{5k, 5l, 5m, 5n, 5o y 5p} se corresponden con el paso 7, y con el objetivo \textbf{lograr [si la forma de pago es online, se cobra online] (1.1.1.1.5)}. 
+
+El paso 7.1 se corresponde con el evento \textbf{5q: El sistema informa de error de pago al cliente} y está relacionado con el objetivo \textbf{lograr [si la forma de pago es online, se cobra online] (1.1.1.1.5)}.
+
+El paso 8.1 se corresponde con el evento \textbf{5r: sistema muestra error de timeout de carrito al cliente}, que se corresponde con \textbf{lograr [si el cliente no confirma el pedido en un intervalo de timeout, el pedido vuelve a estado de carrito] (1.1.1.1.6)}.
 
 %
 % - CASO DE USO: 9) CALCULAR COSTO DE ENVIO
 %
 \begin{casodeuso}
-  \cutitle{9) Calculando costo de envío}
+  \cutitle{Calculando costo de envío}
   \cuactors{API de Logística}
   \cupre{El domicilio fue previamente validado.}
   \cupost{}
@@ -174,7 +225,7 @@ Casos de Uso}
 % - CASO DE USO: 10) ACORDANDO FECHA DE ENTREGA
 %
 \begin{casodeuso}
-  \cutitle{10) Acordando fecha de entrega}
+  \cutitle{Acordando fecha de entrega}
   \cuactors{Cliente, API de Logística}
   \cupre{El cliente tiene un carrito reservado}
   \cupost{El pedido tiene fecha tentativa de entrega}
@@ -187,33 +238,44 @@ Casos de Uso}
   \culabel{acordando-fecha-de-entrega}
 \end{casodeuso}
 
+El paso 1 se corresponde con el evento \textbf{7f: sistema pregunta próximas fechas libres a la API de logística}
+El paso 2 se corresponde con el evento \textbf{7g: el sistema presenta las posibles fechas de entrega al cliente}
+El paso 3 se corresponde con el evento \textbf{7h: el cliente indica la fecha de entrega deseada al sistema}
+
 %
 % - CASO DE USO: 11) PAGANDO ONLINE
 %
 \begin{casodeuso}
-  \cutitle{11) Pagando online}
+  \cutitle{Pagando online}
   \cuactors{Cliente, Agente de Cobro}
   \cupre{El cliente eligió el método de pago online}
   \cupost{El pago del cliente fue acreditado}
   \cucourse{
-    1. Si el cliente lo desea, es extendido por CU: agregando datos de pago online & \\
+    1. Si el cliente lo desea, es extendido por CU \ref{cu:agregando-datos-de-pago-online}: agregando datos de pago online & \\
     2. El sistema muestra datos de pago asociados al cliente & \\
     3. El cliente indica método y datos de pago & 3.1 Si el cliente no posee datos de pago, ir a paso 1 \\
     4. El sistema abre una ventana del agente de cobro con los datos de la transacción. & \\
     5. El cliente realiza la operación a través del agente de cobro, generando un token comprobante del pago. & 5.1 Si el agente de cobro rechaza el pago, ir al paso 1.\\
     6. El sistema recibe el comprobante de pago, y lo verifica contra el agente de pago. & 6.1 Si el token de pago es inválido, informar al usuario, e ir al paso 1 \\
     7. El sistema prepara un mail para el cliente, adjuntando un comprobante de pago de la operación.
-    8. Incluye caso de uso: enviando mail & \\
+    8. Incluye caso de uso \ref{cu:enviando-mail}: enviando mail & \\
     9. FIN CU & \\
   }
   \culabel{pagando-online}
 \end{casodeuso}
 
+% 7k: El sistema muestra datos de pago asociados al cliente
+% 7l: El cliente indica dato de pago
+% 7m: El sistema redirige al cliente a la ventana del Agente de Cobro
+% 7n: El cliente autoriza la operación en la ventana del Agente de Cobro
+% 7o: El agente de cobro envía estado y comprobante al sistema
+% 7p: El sistema pide mail de comprobante de pago al Correo Electrónico
+
 %
 % - CASO DE USO: 12) AGREGANDO DATOS DE PAGO ONLINE
 %
 \begin{casodeuso}
-  \cutitle{12) Agregando datos de pago online}
+  \cutitle{Agregando datos de pago online}
   \cuactors{Cliente}
   \cupre{El cliente está autenticado}
   \cupost{El cliente posee un nuevo dato de pago asociado a su cuenta}
@@ -231,13 +293,13 @@ Casos de Uso}
 % - CASO DE USO: 13) CANCELANDO PEDIDO
 %
 \begin{casodeuso}
-  \cutitle{13) Cancelando pedido}
+  \cutitle{Cancelando pedido}
   \cuactors{Cliente}
   \cupre{El cliente tiene un pedido sin armar en depósito.}
   \cupost{El pedido es cancelado.}
   \cucourse{
     1. Si el carrito está confirmado, la reserva de productos se anula, y los mismos se reingresan a stock. & \\
-    2. Si el pedido ya fue pagado de forma online, es extendido por CU: Reintegrando dinero & \\
+    2. Si el pedido ya fue pagado de forma online, es extendido por CU \ref{cu:reintegrado-dinero}: Reintegrando dinero & \\
     3. El pedido es cancelado. & \\
     4. FIN CU & \\
   }
@@ -248,16 +310,16 @@ Casos de Uso}
 % - CASO DE USO: 14) MODIFICANDO PEDIDO
 %
 \begin{casodeuso}
-  \cutitle{14) Modificando pedido}
+  \cutitle{Modificando pedido}
   \cuactors{Cliente}
   \cupre{El cliente tiene un pedido sin armar en depósito.}
   \cupost{El pedido es cancelado, y un nuevo pedido con las modificaciones es creado.}
   \cucourse{
     1. El cliente quita o agrega los productos que desee, siempre y cuando haya disponibilidad de stock. & \\
     2. Si el carrito está sin confirmar, se registra la modificación & \\
-    3. Si el carrito fue confirmado, se cancela el pedido anterior: es extendido por CU Cancelando Pedido. & \\
-    4. Si el carrito fue cancelado, se genera un nuevo pedido con los datos modificados. & \\
-    5. Si un nuevo pedido fue generado, es extendido por CU: Confirmando compra. & \\
+    3. Si el carrito fue confirmado, se cancela el pedido anterior: es extendido por CU \ref{cu:cancelando-pedido} Cancelando Pedido. & \\
+    4. Si el carrito fue cancelado, se genera un nuevo pedido con los datos modificados. & \\ 
+    5. Si un nuevo pedido fue generado, es extendido por CU \ref{cu:confirmando-compra}: Confirmando compra. & \\
     6. FIN CU & \\
   }
   \culabel{modificando-pedido}
@@ -267,7 +329,7 @@ Casos de Uso}
 % - CASO DE USO: 15) VALIDANDO DATOS DE PAGO
 %
 \begin{casodeuso}
-  \cutitle{15) Validando datos de pago}
+  \cutitle{Validando datos de pago}
   \cuactors{Agente de Cobro}
   \cupre{El cliente ingresó los datos de pago}
   \cupost{Los datos de pago fueron validados}
@@ -283,15 +345,15 @@ Casos de Uso}
 % - CASO DE USO: 16) REINTEGRANDO DINERO
 %
 \begin{casodeuso}
-  \cutitle{16) Reintegrando dinero}
-  \cuactors{Agente de cobro, Correo electrónico}
+  \cutitle{Reintegrando dinero}
+  \cuactors{Agente de cobro}
   \cupre{El cliente canceló un pedido}
   \cupost{El dinero correspondiente al pedido fue reintegrado al cliente}
   \cucourse{
     1. El sistema contacta al agente de cobro, solicitando la anulación de las operaciones correspondientes al pago del pedido. & \\
     2. El agente de cobro anula las operaciones de pago solicitadas, y entrega un número de operación y un comprobante de anulación para cada una de ellas. & \\
     3. El sistema prepara un mensaje para el cliente, informando que el pedido fue anulado, adjuntando los comprobantes de devolución, y lo devuelve al cliente por pantalla. & 3.1 Si el pago no puede ser anulado, se le informa de la situación al cliente, brindándole los números de operación correspondiente.\\
-    4. Utilizando el mensaje anterior, incluye caso de uso: Enviando mail.
+    4. Utilizando el mensaje anterior, incluye caso de uso \ref{cu:enviando-mail}: Enviando mail. & \\
     5. FIN CU & \\
   }
   \culabel{reintegrado-dinero}
@@ -301,8 +363,8 @@ Casos de Uso}
 % - CASO DE USO: 17) VALIDANDO DOMICILIO
 %
 \begin{casodeuso}
-  \cutitle{17) Validando domicilio}
-  \cuactors{Correo Argentino}
+  \cutitle{Validando domicilio}
+  \cuactors{API de Correo Argentino}
   \cupre{El cliente ingresó los datos de su domicilio}
   \cupost{Los datos de domicilio del cliente fueron validados}
   \cucourse{
@@ -313,11 +375,13 @@ Casos de Uso}
   \culabel{validando-domicilio}
 \end{casodeuso}
 
+Este caso de uso responde al objetivo \textbf{lograr [validar domicilio] (1.1.1.1.1.1.2.2.1)} y al fenómeno \textbf{3c: el sistema valida domicilio con el correo argentino}.
+
 %
 % - CASO DE USO: 18) PREPARANDO PEDIDO
 %
 \begin{casodeuso}
-  \cutitle{18) Preparando pedido}
+  \cutitle{Preparando pedido}
   \cuactors{Depósito, Logística}
   \cupre{El cliente tiene un pedido confirmado}
   \cupost{El cliente tiene un pedido preparado}
@@ -333,7 +397,7 @@ Casos de Uso}
 % - CASO DE USO: 19) REGISTRANDO ENTREGA SATISFACTORIA
 %
 \begin{casodeuso}
-  \cutitle{19) Registrando entrega satisfactoria}
+  \cutitle{Registrando entrega satisfactoria}
   \cuactors{Logística}
   \cupre{Se ha realizado una entrega satisfactoria}
   \cupost{La entrega fue registrada en el sistema}
@@ -349,7 +413,7 @@ Casos de Uso}
 % - CASO DE USO: 20) REGISTRANDO ENTREGA FALLIDA
 %
 \begin{casodeuso}
-  \cutitle{20) Registrado entrega fallida}
+  \cutitle{Registrado entrega fallida}
   \cuactors{Depósito}
   \cupre{La entrega del pedido fue fallida}
   \cupost{El pedido está anulado y los productos aprobados fueron reingresados a stock}
@@ -358,7 +422,7 @@ Casos de Uso}
     2. Depósito carga la falta del cliente y el costo generado a la empresa & \\
     3. El pedido es anulado. & \\
     4. El sistema genera un mensaje conteniendo una invitación a rehacer el pedido, y un link hacia una orden de compra con el mismo carrito del pedido anulado & \\
-    5. Incluye: Enviando mail. & \\
+    5. Incluye CU \ref{cu:enviando-mail}: Enviando mail. & \\
     6. FIN CU & \\
   }
   \culabel{registrando-entrega-fallida}
@@ -368,7 +432,7 @@ Casos de Uso}
 % - CASO DE USO: 21) CARGANDO PEDIDO A PROVEEDOR
 %
 \begin{casodeuso}
-  \cutitle{21) Cargando pedido a proveedor}
+  \cutitle{Cargando pedido a proveedor}
   \cuactors{Departamento de Stock}
   \cupre{Se hizo un pedido a un proveedor}
   \cupost{El pedido está cargado}
@@ -383,7 +447,7 @@ Casos de Uso}
 % - CASO DE USO: 22) CARGANDO RECEPCIÓN DE PEDIDO A PROVEEDOR
 %
 \begin{casodeuso}
-  \cutitle{22) Cargando recepción de pedido a proveedor}
+  \cutitle{Cargando recepción de pedido a proveedor}
   \cuactors{Depósito}
   \cupre{Llegó un pedido al depósito}
   \cupost{Los nuevos productos son ingresados a stock}
@@ -399,7 +463,7 @@ Casos de Uso}
 % - CASO DE USO: 23) INFORMANDO PREPARACIÓN DE STOCK PARA REPOSICIÓN
 %
 \begin{casodeuso}
-  \cutitle{23) Informando preparación de stock para reposición}
+  \cutitle{Informando preparación de stock para reposición}
   \cuactors{Depósito}
   \cupre{Hay un pedido de reposición de la sucursal}
   \cupost{Los productos requeridos son restados del stock}
@@ -418,7 +482,7 @@ Casos de Uso}
 % - CASO DE USO: 24) REGISTRANDO ENTREGA DE REPOSICIÓN
 %
 \begin{casodeuso}
-  \cutitle{24) Registrando entrega de reposición}
+  \cutitle{Registrando entrega de reposición}
   \cuactors{Sucursal}
   \cupre{Un envío de reposición a sucursal fue entregado correctamente}
   \cupost{La llegada del envío es registrada}
@@ -433,7 +497,7 @@ Casos de Uso}
 % - CASO DE USO: 25) DEFINIENDO UMBRAL DE REDITUABILIDAD
 %
 \begin{casodeuso}
-  \cutitle{25) Definiendo umbral de redituabilidad}
+  \cutitle{Definiendo umbral de redituabilidad}
   \cuactors{Administrador}
   \cupre{-}
   \cupost{Se redefine el umbral de redituabilidad}
@@ -449,7 +513,7 @@ Casos de Uso}
 % - CASO DE USO: 26) DANDO DE ALTA PRODUCTO
 %
 \begin{casodeuso}
-  \cutitle{26) Dando de alta producto}
+  \cutitle{Dando de alta producto}
   \cuactors{Administrador}
   \cupre{-}
   \cupost{El producto solicitado es dado de alta}
@@ -466,7 +530,7 @@ Casos de Uso}
 % - CASO DE USO: 27) DANDO DE BAJA PRODUCTO
 %
 \begin{casodeuso}
-  \cutitle{27) Dando de baja producto}
+  \cutitle{Dando de baja producto}
   \cuactors{Administrador}
   \cupre{-}
   \cupost{El producto solicitado es dado de baja}
@@ -483,7 +547,7 @@ Casos de Uso}
 % - CASO DE USO: 28) MODIFICANDO PRODUCTO
 %
 \begin{casodeuso}
-  \cutitle{28) Modificando producto}
+  \cutitle{Modificando producto}
   \cuactors{Administrador}
   \cupre{-}
   \cupost{El producto solicitado es modificado}
@@ -500,7 +564,7 @@ Casos de Uso}
 % - CASO DE USO: 29) OBTENIENDO ESTADISTICAS
 %
 \begin{casodeuso}
-  \cutitle{29) Obteniendo estadísticas}
+  \cutitle{Obteniendo estadísticas}
   \cuactors{Administrador}
   \cupre{-}
   \cupost{Se envían las estadísticas al administrador}
@@ -508,7 +572,7 @@ Casos de Uso}
     1. El administrador solicita las estadísticas a través del sistema & \\
     2. El sistema genera las estadísticas de venta de cada producto y compras de cada usuario, y las prepara para su adecuada visualización & \\
     3. El administrador descarga las estadísticas a través del sistema & \\
-    4. Si administrador desea modificar algún producto, es extendido por CU: Modificando producto. & \\
+    4. Si administrador desea modificar algún producto, es extendido por CU \ref{cu:modificando-producto}: Modificando producto. & \\
     5. FIN CU. & \\
   }
   \culabel{obteniendo-estadisticas}
@@ -518,7 +582,7 @@ Casos de Uso}
 % - CASO DE USO: 30) ENCARGANDO REPOSICIÓN
 %
 \begin{casodeuso}
-  \cutitle{30) Encargando reposición}
+  \cutitle{Encargando reposición}
   \cuactors{Sucursal}
   \cupre{La sucursal se conecta desde una terminal especial pre-autenticada.}
   \cupost{Los productos deseados fueron encargados}
@@ -535,7 +599,7 @@ Casos de Uso}
 % - CASO DE USO: 31) CARGANDO DATOS SEMANALES DE VENTA
 %
 \begin{casodeuso}
-  \cutitle{31) Cargando datos semanales de venta}
+  \cutitle{Cargando datos semanales de venta}
   \cuactors{Sucursal}
   \cupre{La sucursal tiene datos de venta para informar}
   \cupost{El sistema contiene datos de venta actualizados}
